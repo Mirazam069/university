@@ -1,0 +1,596 @@
+/* =========================
+   NAVBAR (DM Sans everywhere)
+========================= */
+
+:root{
+  --r-1: #e2eed9;
+  --r-2: #a48d49;
+  --r-3: #2d6752;
+  --r-4: #2c5489;
+  --r-5: #f6f8f1;
+  --r-6: #f4f0e7;
+  --r-7: #addbcd;
+  --r-8: #edf2f8;
+  --r-9: #c0d2e9;
+  --r-10:#b7cce5;
+
+  --nav-ink: #0b1220;
+  --nav-soft: rgba(255,255,255,.10);
+  --nav-border: rgba(255,255,255,.18);
+  --nav-glow: rgba(0,0,0,.28);
+  --nav-whiteBorder: rgba(11,18,32,.10);
+
+  --brand-green: #3f8f6c;
+  --brand-blue: #3e74c9;
+
+  --radius: 16px;
+}
+
+/* DM Sans hard apply to everything inside nav */
+.navx,
+.navx *{
+  box-sizing: border-box;
+  font-family: "DM Sans", sans-serif !important;
+}
+
+/* sticky (video ustida) */
+.navx{
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
+
+/* container rule */
+.navx-container{
+  width: min(1440px, 100%);
+  margin: 0 auto;
+  padding: 10px 40px 8px;
+}
+
+/* ================= TOP STRIP ================= */
+/* .navx-top{
+  background: rgba(10, 17, 30, .55);
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  backdrop-filter: blur(10px);
+  transition: background .25s ease, border-color .25s ease;
+} */
+
+.navx-logo{
+  height: 40px;      /* navbar balandligiga mos */
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+.navx.is-scrolled .navx-logo{
+  filter: brightness(0);
+}
+
+.navx-top-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 16px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.navx-top-left,
+.navx-top-right{
+  display:flex;
+  align-items:center;
+  gap: 14px;
+}
+
+.navx-top-link{
+  display:flex;
+  align-items:center;
+  gap: 8px;
+  color: rgba(255,255,255,.85);
+  text-decoration:none;
+  font-size: 13px;
+  letter-spacing: .2px;
+}
+.navx-top-link svg{ font-size: 16px; }
+
+.navx-sep{
+  width: 1px;
+  height: 18px;
+  background: rgba(255,255,255,.22);
+  display:inline-block;
+}
+
+.navx-top-center{
+  flex: 1;
+  display:flex;
+  justify-content:center;
+}
+
+.navx-pill{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(34, 197, 94, .15);
+  border: 1px solid rgba(34, 197, 94, .35);
+  color: rgba(230,255,240,.92);
+  font-size: 13px;
+  white-space: nowrap;
+}
+.navx-pill-dot{
+  width: 9px; height: 9px;
+  border-radius: 999px;
+  background: rgba(34,197,94,.95);
+  box-shadow: 0 0 0 6px rgba(34,197,94,.14);
+}
+
+/* icon buttons */
+.navx-iconBtn{
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.86);
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  transition: .2s ease;
+}
+.navx-iconBtn:hover{
+  background: rgba(255,255,255,.10);
+  transform: translateY(-1px);
+}
+
+.navx-iconA{
+  width: 32px; height: 32px;
+  border-radius: 10px;
+  display:grid;
+  place-items:center;
+  color: rgba(255,255,255,.86);
+  border: 1px solid transparent;
+  transition: .2s ease;
+  text-decoration:none;
+}
+.navx-iconA:hover{
+  border-color: rgba(255,255,255,.18);
+  background: rgba(255,255,255,.06);
+  transform: translateY(-1px);
+}
+
+/* language dropdown */
+.navx-lang{ position: relative; }
+.navx-langBtn{
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.9);
+  padding: 0 10px;
+  display:flex;
+  align-items:center;
+  gap: 8px;
+  cursor:pointer;
+}
+.navx-flag{ font-size: 14px; font-weight: 800; }
+.navx-chev{ font-size: 16px; opacity: .9; }
+
+.navx-langMenu{
+  position:absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 160px;
+  padding: 8px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(10, 17, 30, .88);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.35);
+  display:none;
+}
+.navx-lang.open .navx-langMenu{ display:block; }
+.navx-langMenu button{
+  width:100%;
+  border:0;
+  background: transparent;
+  color: rgba(255,255,255,.9);
+  padding: 10px 10px;
+  border-radius: 10px;
+  cursor:pointer;
+  text-align:left;
+}
+.navx-langMenu button:hover{ background: rgba(255,255,255,.08); }
+
+/* ================= MAIN NAV ================= */
+/* .navx-main{
+  background: rgba(10, 17, 30, .35);
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  backdrop-filter: blur(12px);
+  transition: background .25s ease, border-color .25s ease;
+} */
+
+.navx-main-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 18px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* brand */
+.navx-brand{
+  display:flex;
+  align-items:center;
+  gap: 14px;
+  min-width: 240px;
+  text-decoration:none;
+}
+.navx-brand-mark{
+  width: 4px;
+  height: 54px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--brand-green), var(--brand-blue));
+  box-shadow: 0 10px 20px rgba(0,0,0,.18);
+}
+.navx-brand-text{
+  display:flex;
+  flex-direction:column;
+  line-height: 1.05;
+  color: rgba(255,255,255,.92);
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+/* desktop links */
+.navx-links{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  flex: 1;
+  justify-content:center;
+}
+
+.navx-link,
+.navx-dd > button{
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 0;
+  background: transparent;
+  color: rgba(255,255,255,.92);
+  font-size: 15px;
+  display:flex;
+  align-items:center;
+  gap: 8px;
+  cursor:pointer;
+  transition: .2s ease;
+  text-decoration:none;
+  white-space: nowrap;
+}
+.navx-dd > button svg{ font-size: 16px; opacity:.9; }
+
+.navx-link:hover,
+.navx-dd > button:hover{
+  background: rgba(255,255,255,.08);
+}
+
+/* dropdown */
+.navx-dd{ position: relative; }
+.navx-ddMenu{
+  position:absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  min-width: 210px;
+  padding: 10px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(10, 17, 30, .90);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 18px 50px rgba(0,0,0,.35);
+  display:none;
+}
+.navx-dd.open .navx-ddMenu{ display:block; }
+.navx-ddMenu a{
+  display:block;
+  padding: 10px 10px;
+  border-radius: 12px;
+  color: rgba(255,255,255,.92);
+  text-decoration:none;
+  font-size: 14px;
+}
+.navx-ddMenu a:hover{ background: rgba(255,255,255,.08); }
+
+/* right apply */
+.navx-cta{
+  min-width: 170px;
+  display:flex;
+  justify-content:flex-end;
+}
+.navx-apply{
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.20);
+  background: linear-gradient(180deg, rgba(96, 165, 250, .38), rgba(34, 211, 238, .18));
+  color: rgba(255,255,255,.95);
+  font-weight: 900;
+  letter-spacing: .2px;
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  cursor:pointer;
+  transition: .2s ease;
+}
+.navx-apply:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+.navx-applyArrow{ font-size: 18px; margin-top: -1px; }
+
+/* burger (hidden desktop) */
+.navx-burger{
+  display:none;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.92);
+  cursor:pointer;
+  place-items:center;
+}
+.navx-burger svg{ font-size: 24px; }
+
+/* ================= SCROLLED (white) ================= */
+.navx.is-scrolled .navx-top{
+  background: rgba(255,255,255,.92);
+  border-bottom: 1px solid var(--nav-whiteBorder);
+}
+.navx.is-scrolled .navx-main{
+  background: rgba(255,255,255,.92);
+  border-bottom: 1px solid var(--nav-whiteBorder);
+}
+
+/* switch colors */
+.navx.is-scrolled .navx-top-link,
+.navx.is-scrolled .navx-iconA,
+.navx.is-scrolled .navx-iconBtn{
+  color: rgba(11,18,32,.86);
+}
+.navx.is-scrolled .navx-iconBtn{
+  background: rgba(11,18,32,.04);
+  border-color: rgba(11,18,32,.10);
+}
+.navx.is-scrolled .navx-sep{ background: rgba(11,18,32,.16); }
+.navx.is-scrolled .navx-brand-text{ color: rgba(11,18,32,.90); }
+
+.navx.is-scrolled .navx-link,
+.navx.is-scrolled .navx-dd > button{
+  color: rgba(11,18,32,.86);
+}
+.navx.is-scrolled .navx-link:hover,
+.navx.is-scrolled .navx-dd > button:hover{
+  background: rgba(11,18,32,.05);
+}
+
+.navx.is-scrolled .navx-ddMenu{
+  background: rgba(255,255,255,.96);
+  border-color: rgba(11,18,32,.10);
+}
+.navx.is-scrolled .navx-ddMenu a{ color: rgba(11,18,32,.86); }
+.navx.is-scrolled .navx-ddMenu a:hover{ background: rgba(11,18,32,.05); }
+
+.navx.is-scrolled .navx-pill{
+  background: rgba(34,197,94,.12);
+  border-color: rgba(34,197,94,.25);
+  color: rgba(11,18,32,.78);
+}
+
+.navx.is-scrolled .navx-apply{
+  border-color: rgba(11,18,32,.12);
+  color: rgba(11,18,32,.86);
+  background: linear-gradient(180deg, rgba(96, 165, 250, .22), rgba(34, 211, 238, .10));
+}
+
+.navx.is-scrolled .navx-burger{
+  color: rgba(11,18,32,.86);
+  border-color: rgba(11,18,32,.10);
+  background: rgba(11,18,32,.04);
+}
+
+/* ================= MOBILE OVERLAY ================= */
+.navx-mOverlay{
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display:none;
+}
+.navx-mOverlay.open{ display:block; }
+
+.navx-mBackdrop{
+  position:absolute;
+  inset:0;
+  border:0;
+  background: rgba(0,0,0,.35);
+  backdrop-filter: blur(2px);
+}
+
+.navx-mPanel{
+  position:absolute;
+  top: 10px;
+  right: 10px;
+  left: 10px;
+  bottom: 10px;
+  border-radius: 22px;
+  background: rgba(10, 17, 30, .92);
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 30px 80px rgba(0,0,0,.45);
+  overflow:auto;
+  padding: 16px;
+}
+
+.navx-mTop{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+
+.navx-mBrand{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+}
+
+.navx-mClose{
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.92);
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+}
+.navx-mClose svg{ font-size: 24px; }
+
+.navx-mSearch{
+  margin: 14px 0 12px;
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.82);
+}
+.navx-mSearch input{
+  width:100%;
+  border:0;
+  outline:none;
+  background: transparent;
+  color: rgba(255,255,255,.92);
+  font-size: 15px;
+}
+.navx-mSearch input::placeholder{ color: rgba(255,255,255,.55); }
+
+.navx-mLinks{
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+}
+
+.navx-mLinks details{
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+  border-radius: 16px;
+  overflow:hidden;
+}
+
+.navx-mLinks summary{
+  list-style:none;
+  cursor:pointer;
+  padding: 14px 14px;
+  color: rgba(255,255,255,.92);
+  font-weight: 900;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.navx-mLinks summary::-webkit-details-marker{ display:none; }
+
+.navx-mDD{
+  padding: 10px 14px 14px;
+  display:flex;
+  flex-direction:column;
+  gap: 8px;
+}
+.navx-mDD a{
+  color: rgba(255,255,255,.78);
+  text-decoration:none;
+  padding: 10px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.12);
+}
+.navx-mDD a:hover{ background: rgba(255,255,255,.08); }
+
+.navx-mLink{
+  color: rgba(255,255,255,.92);
+  text-decoration:none;
+  padding: 14px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+  font-weight: 900;
+}
+
+.navx-mActions{
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,.12);
+}
+.navx-apply.wide{
+  width: 100%;
+  justify-content:center;
+}
+
+.navx-mContacts{
+  margin-top: 12px;
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+}
+.navx-mContacts a{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  color: rgba(255,255,255,.78);
+  text-decoration:none;
+  padding: 12px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+}
+.navx-mContacts a:hover{ background: rgba(255,255,255,.08); }
+
+/* ================= Responsive ================= */
+@media (max-width: 900px){
+  .navx-top-center{ display:none; }
+  .navx-links{ display:none; }
+  .navx-burger{ display:grid; }
+}
+
+@media (max-width: 560px){
+  .navx-container{ padding: 10px 16px 8px; }
+  .navx-top-left{ display:none; }
+}
+
+
+
+/* ✅ OurStaff kabi hero-baner page lar uchun overlay nav */
+.navx.navx--overlay .navx-top{
+  background: rgba(10, 17, 30, .45);
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  backdrop-filter: blur(10px);
+}
+
+.navx.navx--overlay .navx-main{
+  background: rgba(10, 17, 30, .18);
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  backdrop-filter: blur(12px);
+}
+
+/* ✅ Scroll bo‘lganda baribir oq rejim ishlasin (senda bor is-scrolled qoidalar qoladi) */
+.navx.navx--overlay.is-scrolled .navx-top{
+  background: rgba(255,255,255,.92);
+  border-bottom: 1px solid var(--nav-whiteBorder);
+}
+.navx.navx--overlay.is-scrolled .navx-main{
+  background: rgba(255,255,255,.92);
+  border-bottom: 1px solid var(--nav-whiteBorder);
+}

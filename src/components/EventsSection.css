@@ -1,0 +1,189 @@
+/* src/components/EventsSection/EventsSection.css */
+.evx,
+.evx *{
+  font-family: "DM Sans", sans-serif !important;
+  box-sizing: border-box;
+}
+
+.evx{
+  position: relative;
+  padding: 34px 0 26px;
+  background: #fff;
+  margin-bottom: 50px;
+}
+
+.evx-container{
+  width: min(1440px, 100%);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.evx-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.evx-title{
+  margin: 0;
+  font-weight: 900;
+  letter-spacing: -0.6px;
+  line-height: 1.05;
+  font-size: clamp(28px, 2.6vw, 44px);
+  color: var(--nav-ink);
+}
+.evx-title span{ color: var(--brand-blue); }
+
+.evx-more{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  text-decoration:none;
+  color: var(--brand-green);
+  font-weight: 800;
+  font-size: 16px;
+  white-space: nowrap;
+  opacity: .95;
+}
+.evx-more:hover{ opacity: 1; }
+.evx-more svg{ font-size: 18px; }
+
+/* ✅ Cardlar chiqib ketmasligi uchun: gorizontal scroll track */
+.evx-trackWrap{
+  overflow: hidden;              /* tashqariga toshmasin */
+  border-radius: 24px;
+}
+
+.evx-track{
+  display:flex;
+  gap: 18px;
+  overflow-x: auto;              /* ✅ scroll bo‘ladi */
+  overflow-y: hidden;
+  padding: 12px 2px 16px;
+  scroll-snap-type: x mandatory; /* chiroyli snap */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* scroll bar minimal */
+.evx-track::-webkit-scrollbar{ height: 10px; }
+.evx-track::-webkit-scrollbar-thumb{
+  background: rgba(11,18,32,.18);
+  border-radius: 999px;
+}
+.evx-track::-webkit-scrollbar-track{
+  background: rgba(11,18,32,.08);
+  border-radius: 999px;
+}
+
+/* ✅ Card width clamp: ekran kichrayganda card ham kichrayadi */
+.evx-card{
+  flex: 0 0 clamp(260px, 32vw, 480px); /* ✅ eng muhimi shu */
+  display:grid;
+  grid-template-columns: 1fr 168px;
+  border-radius: 22px;
+  overflow:hidden;
+  background: #fff;
+  border: 1px solid rgba(11,18,32,.10);
+  box-shadow: 0 14px 30px rgba(11,18,32,.06);
+  scroll-snap-align: start;
+  min-height: 126px;
+}
+
+.evx-left{
+  padding: 18px 18px;
+  display:flex;
+  flex-direction:column;
+  gap: 12px;
+}
+
+.evx-h3{
+  margin: 0;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: -0.2px;
+  line-height: 1.2;
+
+  /* ✅ title uzun bo‘lsa ham buzilmasin */
+  display:-webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow:hidden;
+}
+
+.evx-divider{
+  height: 1px;
+  width: 100%;
+  background: rgba(11,18,32,.10);
+}
+
+.evx-loc{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  color: rgba(11,18,32,.76);
+  font-weight: 700;
+}
+.evx-locIc{
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  display:grid;
+  place-items:center;
+  background: rgba(63,143,108,.10);
+  border: 1px solid rgba(63,143,108,.20);
+  color: var(--brand-green);
+}
+.evx-locIc svg{ font-size: 16px; }
+
+.evx-locTx{
+  /* ✅ text ham ekranni kengaytirib yubormasin */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.evx-right{
+  background: linear-gradient(180deg, rgba(62,116,201,.92), rgba(44,84,137,.96));
+  color: rgba(255,255,255,.96);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap: 14px;
+  padding: 16px 14px;
+}
+
+.evx-dateTop{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-weight: 900;
+  letter-spacing: -0.2px;
+  line-height: 1.05;
+  font-size: 18px;
+}
+.evx-year{
+  margin-top: 6px;
+  font-size: 18px;
+  font-weight: 500;
+  opacity: .92;
+}
+
+.evx-time{
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: -0.6px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 560px){
+  .evx-container{ padding: 0 16px; }
+  .evx-card{
+    grid-template-columns: 1fr 150px;
+    min-height: 120px;
+  }
+  .evx-h3{ font-size: 16px; -webkit-line-clamp: 3; }
+  .evx-time{ font-size: 30px; }
+}
