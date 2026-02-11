@@ -9,6 +9,7 @@ import EventsSection from "./components/EventsSection";
 import Footer from "./components/Footer";
 
 import OurStaff from "./pages/OurStaff/OurStaff";
+import DepartmentCommunity from "./pages/OurStaff/DepartmentCommunity";
 
 function Home() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/our-staff" element={<OurStaff />} />
+        <Route path="/department-community" element={<DepartmentCommunity />} />
       </Routes>
 
       <Footer />

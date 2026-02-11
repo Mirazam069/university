@@ -1,3 +1,5 @@
+/* src/components/Navbar.css */
+
 /* =========================
    NAVBAR (DM Sans everywhere)
 ========================= */
@@ -47,16 +49,9 @@
   padding: 10px 40px 8px;
 }
 
-/* ================= TOP STRIP ================= */
-/* .navx-top{
-  background: rgba(10, 17, 30, .55);
-  border-bottom: 1px solid rgba(255,255,255,.10);
-  backdrop-filter: blur(10px);
-  transition: background .25s ease, border-color .25s ease;
-} */
-
+/* logo */
 .navx-logo{
-  height: 40px;      /* navbar balandligiga mos */
+  height: 40px;
   width: auto;
   object-fit: contain;
   display: block;
@@ -65,6 +60,7 @@
   filter: brightness(0);
 }
 
+/* ================= TOP STRIP ================= */
 .navx-top-row{
   display:flex;
   align-items:center;
@@ -201,13 +197,6 @@
 .navx-langMenu button:hover{ background: rgba(255,255,255,.08); }
 
 /* ================= MAIN NAV ================= */
-/* .navx-main{
-  background: rgba(10, 17, 30, .35);
-  border-bottom: 1px solid rgba(255,255,255,.12);
-  backdrop-filter: blur(12px);
-  transition: background .25s ease, border-color .25s ease;
-} */
-
 .navx-main-row{
   display:flex;
   align-items:center;
@@ -224,21 +213,6 @@
   gap: 14px;
   min-width: 240px;
   text-decoration:none;
-}
-.navx-brand-mark{
-  width: 4px;
-  height: 54px;
-  border-radius: 999px;
-  background: linear-gradient(180deg, var(--brand-green), var(--brand-blue));
-  box-shadow: 0 10px 20px rgba(0,0,0,.18);
-}
-.navx-brand-text{
-  display:flex;
-  flex-direction:column;
-  line-height: 1.05;
-  color: rgba(255,255,255,.92);
-  font-weight: 800;
-  letter-spacing: .2px;
 }
 
 /* desktop links */
@@ -276,6 +250,7 @@
 
 /* dropdown */
 .navx-dd{ position: relative; }
+
 .navx-ddMenu{
   position:absolute;
   top: calc(100% + 12px);
@@ -288,17 +263,31 @@
   backdrop-filter: blur(16px);
   box-shadow: 0 18px 50px rgba(0,0,0,.35);
   display:none;
+
+  /* ✅ MUHIM: a va button ikkalasi ham shundan rang oladi */
+  color: rgba(255,255,255,.92);
 }
 .navx-dd.open .navx-ddMenu{ display:block; }
-.navx-ddMenu a{
+
+/* ✅ a ham, button ham bir xil */
+.navx-ddMenu a,
+.navx-ddMenu button{
   display:block;
+  width:100%;
   padding: 10px 10px;
   border-radius: 12px;
-  color: rgba(255,255,255,.92);
-  text-decoration:none;
+  text-decoration: none;
   font-size: 14px;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  text-align:left;
+  cursor:pointer;
 }
-.navx-ddMenu a:hover{ background: rgba(255,255,255,.08); }
+.navx-ddMenu a:hover,
+.navx-ddMenu button:hover{
+  background: rgba(255,255,255,.08);
+}
 
 /* right apply */
 .navx-cta{
@@ -362,7 +351,6 @@
   border-color: rgba(11,18,32,.10);
 }
 .navx.is-scrolled .navx-sep{ background: rgba(11,18,32,.16); }
-.navx.is-scrolled .navx-brand-text{ color: rgba(11,18,32,.90); }
 
 .navx.is-scrolled .navx-link,
 .navx.is-scrolled .navx-dd > button{
@@ -373,12 +361,16 @@
   background: rgba(11,18,32,.05);
 }
 
+/* ✅ SCROLLED paytda dropdown oq bo‘lsin, text qora */
 .navx.is-scrolled .navx-ddMenu{
   background: rgba(255,255,255,.96);
   border-color: rgba(11,18,32,.10);
+  color: rgba(11,18,32,.88);
 }
-.navx.is-scrolled .navx-ddMenu a{ color: rgba(11,18,32,.86); }
-.navx.is-scrolled .navx-ddMenu a:hover{ background: rgba(11,18,32,.05); }
+.navx.is-scrolled .navx-ddMenu a:hover,
+.navx.is-scrolled .navx-ddMenu button:hover{
+  background: rgba(11,18,32,.05);
+}
 
 .navx.is-scrolled .navx-pill{
   background: rgba(34,197,94,.12);
@@ -519,6 +511,20 @@
 }
 .navx-mDD a:hover{ background: rgba(255,255,255,.08); }
 
+/* OUR STAFF mobile button */
+.navx-mDDbtn{
+  width:100%;
+  color: rgba(255,255,255,.78);
+  text-decoration:none;
+  padding: 10px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.12);
+  text-align:left;
+  cursor:pointer;
+}
+.navx-mDDbtn:hover{ background: rgba(255,255,255,.08); }
+
 .navx-mLink{
   color: rgba(255,255,255,.92);
   text-decoration:none;
@@ -570,8 +576,6 @@
   .navx-top-left{ display:none; }
 }
 
-
-
 /* ✅ OurStaff kabi hero-baner page lar uchun overlay nav */
 .navx.navx--overlay .navx-top{
   background: rgba(10, 17, 30, .45);
@@ -585,7 +589,7 @@
   backdrop-filter: blur(12px);
 }
 
-/* ✅ Scroll bo‘lganda baribir oq rejim ishlasin (senda bor is-scrolled qoidalar qoladi) */
+/* ✅ Scroll bo‘lganda baribir oq rejim ishlasin */
 .navx.navx--overlay.is-scrolled .navx-top{
   background: rgba(255,255,255,.92);
   border-bottom: 1px solid var(--nav-whiteBorder);
@@ -593,4 +597,76 @@
 .navx.navx--overlay.is-scrolled .navx-main{
   background: rgba(255,255,255,.92);
   border-bottom: 1px solid var(--nav-whiteBorder);
+}
+
+
+
+
+
+
+/* ===============================
+   ONLY OurStaff + Department page
+   (navx--solid)
+================================ */
+
+/* navbar fonlari oq */
+.navx.navx--solid .navx-top,
+.navx.navx--solid .navx-main{
+  background: rgba(255,255,255,.92);
+  border-bottom: 1px solid rgba(11,18,32,.10);
+  backdrop-filter: blur(12px);
+}
+
+/* text/ikonlar qora */
+.navx.navx--solid .navx-top-link,
+.navx.navx--solid .navx-iconA,
+.navx.navx--solid .navx-iconBtn,
+.navx.navx--solid .navx-link,
+.navx.navx--solid .navx-dd > button,
+.navx.navx--solid .navx-brand-text,
+.navx.navx--solid .navx-langBtn{
+  color: rgba(11,18,32,.86);
+}
+
+/* icon button style */
+.navx.navx--solid .navx-iconBtn{
+  background: rgba(11,18,32,.04);
+  border-color: rgba(11,18,32,.10);
+}
+
+/* separator */
+.navx.navx--solid .navx-sep{
+  background: rgba(11,18,32,.16);
+}
+
+/* dropdown menu ham oq bo‘lsin */
+.navx.navx--solid .navx-ddMenu,
+.navx.navx--solid .navx-langMenu{
+  background: rgba(255,255,255,.96);
+  border-color: rgba(11,18,32,.10);
+}
+
+.navx.navx--solid .navx-ddMenu a,
+.navx.navx--solid .navx-langMenu button{
+  color: rgba(11,18,32,.86);
+}
+
+.navx.navx--solid .navx-ddMenu a:hover,
+.navx.navx--solid .navx-langMenu button:hover{
+  background: rgba(11,18,32,.05);
+}
+
+/* Apply button */
+.navx.navx--solid .navx-apply{
+  border-color: rgba(11,18,32,.12);
+  color: rgba(11,18,32,.86);
+  background: linear-gradient(180deg, rgba(96,165,250,.22), rgba(34,211,238,.10));
+}
+
+/* LOGO masalasi:
+   agar logong oq bo‘lsa -> bu qatorni O'CHIRIB tashla
+   agar logong qora bo‘lishi kerak bo‘lsa -> qoldir
+*/
+.navx.navx--solid .navx-logo{
+  filter: brightness(0);
 }

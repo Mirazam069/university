@@ -1,5 +1,5 @@
 import "./OurStaff.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import staffHero from "../../images/campus.png"; // xohlasang o'zing rasm qo'yasan
 
 const DEPARTMENTS = [
@@ -25,7 +25,8 @@ const DEPARTMENTS = [
     avatars: ["https://i.pravatar.cc/80?img=18"],
   },
   {
-    title: "Department of Human Resources, Recruitment and Operations with Foreign",
+    title:
+      "Department of Human Resources, Recruitment and Operations with Foreign",
     avatars: ["https://i.pravatar.cc/80?img=35"],
   },
   {
@@ -35,6 +36,12 @@ const DEPARTMENTS = [
 ];
 
 export default function OurStaff() {
+  const navigate = useNavigate();
+
+  const goDepartment = (title) => {
+    navigate("/department-community", { state: { title } });
+  };
+
   return (
     <main className="os-page">
       {/* HERO */}
@@ -47,7 +54,9 @@ export default function OurStaff() {
 
         <div className="os-hero-inner">
           <nav className="os-breadcrumb">
-            <Link to="/" className="os-crumb">Home</Link>
+            <Link to="/" className="os-crumb">
+              Home
+            </Link>
             <span className="os-crumbSep">›</span>
             <span className="os-crumb">About NewUU</span>
             <span className="os-crumbSep">›</span>
@@ -69,18 +78,43 @@ export default function OurStaff() {
             {/* LEFT: CARDS */}
             <div className="os-grid">
               {DEPARTMENTS.map((d, idx) => (
-                <article className="os-card" key={idx}>
+                <article
+                  className="os-card"
+                  key={idx}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Open ${d.title}`}
+                  onClick={() => goDepartment(d.title)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      goDepartment(d.title);
+                    }
+                  }}
+                >
                   <h3 className="os-cardTitle">{d.title}</h3>
                   <div className="os-cardLine" />
 
                   <div className="os-cardBottom">
                     <div className="os-avatars">
                       {d.avatars.map((src, i) => (
-                        <img className="os-avatar" src={src} alt="staff" key={i} />
+                        <img
+                          className="os-avatar"
+                          src={src}
+                          alt="staff"
+                          key={i}
+                        />
                       ))}
                     </div>
 
-                    <button className="os-moreBtn" type="button">
+                    <button
+                      className="os-moreBtn"
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation(); // ✅ card clickini to'xtatadi
+                        goDepartment(d.title);
+                      }}
+                    >
                       See more <span className="os-arrow">→</span>
                     </button>
                   </div>
@@ -96,10 +130,11 @@ export default function OurStaff() {
               <div className="os-sideCard">
                 <div className="os-sideTitle">Our team</div>
 
-                <a className="os-sideLink active" href="/our-staff">
+                <Link className="os-sideLink active" to="/our-staff">
                   <span className="os-sideMark" />
                   University Staff
-                </a>
+                </Link>
+
                 <a className="os-sideLink" href="#">
                   Academic Community
                 </a>

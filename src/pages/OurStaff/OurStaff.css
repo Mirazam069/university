@@ -86,6 +86,8 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
 }
+
+/* CARD */
 .os-card{
   position:relative;
   min-height: 170px;
@@ -95,7 +97,29 @@
   box-shadow: 0 14px 36px rgba(11,18,32,.08);
   padding: 20px 20px 18px;
   overflow:hidden;
+
+  /* ✅ NEW */
+  cursor: pointer;
+  transform: translateY(0);
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease, filter .35s ease;
 }
+
+/* ✅ Hover ko'tarilish */
+.os-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 20px 44px rgba(11,18,32,.12);
+  border-color: rgba(44,84,137,.36);
+}
+
+/* ✅ Keyboard focus ham chiroyli bo'lsin */
+.os-card:focus{
+  outline: none;
+}
+.os-card:focus-visible{
+  box-shadow: 0 0 0 4px rgba(62,116,201,.18), 0 20px 44px rgba(11,18,32,.12);
+  border-color: rgba(62,116,201,.55);
+}
+
 .os-cardTitle{
   margin: 0;
   font-size: 20px;
