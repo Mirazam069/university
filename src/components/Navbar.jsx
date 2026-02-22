@@ -29,7 +29,12 @@ export default function Navbar() {
     const navRef = useRef(null);
 
     // ✅ OurStaff va shunga o‘xshash hero-baner page lar
-    const overlayPages = ["/our-staff", "/department-community"];
+    const isStaffListPage = location.pathname === "/staff";
+    const isStaffDetailPage = location.pathname.startsWith("/staff/");
+    const isLegacyStaffPage =
+        location.pathname === "/our-staff" || location.pathname === "/department-community";
+
+    const overlayPages = ["/our-staff"];
     const overlayMode = overlayPages.includes(location.pathname);
 
     useEffect(() => {
@@ -38,6 +43,11 @@ export default function Navbar() {
         window.addEventListener("scroll", onScroll);
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
+
+    useEffect(() => {
+        const onRouteCheck = () => setScrolled(window.scrollY > 30);
+        onRouteCheck();
+    }, [location.pathname]);
 
     useEffect(() => {
         const onDoc = (e) => {
@@ -86,12 +96,11 @@ export default function Navbar() {
     const goStaff = () => {
         closeAll();
         setMobileOpen(false);
-        navigate("/our-staff");
+        navigate("/staff");
     };
 
     const solidWhiteMode =
-  location.pathname === "/our-staff" ||
-  location.pathname === "/department-community";
+  isStaffListPage || isStaffDetailPage || isLegacyStaffPage;
 
     return (
         <header
